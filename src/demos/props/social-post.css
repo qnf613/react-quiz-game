@@ -1,0 +1,14 @@
+.social-post--content{
+    margin: 1rem;
+    font-size: 1rem;
+    padding: 1rem 1rem;
+}
+
+.social-post--button{
+    padding: 0.2rem .3rem;
+    margin: 0.1rem;
+    font-size: 0.1rem;
+    border: .5px dashed transparent gray;
+    cursor: pointer;
+    transition: all 0.2s;
+}
