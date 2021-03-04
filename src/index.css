@@ -16,7 +16,7 @@ default. */
 body {
   /* background: url("./images/memphis-colorful-dim.png"); */
   background-color: rgb(19, 18, 18);
-  color: white;
+  color: blue;
   max-width: 800px;
   /* This margin auto trick centers block elements. */
   margin: 0 auto;
