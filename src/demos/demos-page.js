@@ -9,12 +9,15 @@ import CustomIncrement from "./state/custom-increment";
 import MusicalButton from "./dependencies/musical-button";
 import ConfettiDemo from "./dependencies/confetti-demo";
 import Todos from "./arrays/todos";
+import RandomDogs from "./random-dogs";
 
 function DemosPage(){
     return(
         <main>
         <h1>My First React App</h1>
-        <h2>Rendering Arrays</h2>
+        <h2>RandomDogsDemo</h2>
+        <RandomDogs/>
+        {/* <h2>Rendering Arrays</h2>
         <Todos/>
         <h2>ConfettiDemo</h2>
         <ConfettiDemo/>
@@ -30,9 +33,9 @@ function DemosPage(){
         <WelcomeMessage name="Eric" greeting="Hello"/>
         <WelcomeMessage name="Jin" greeting="Howdy"/>
         <WelcomeMessage name="Class" />
-        <h2>Buttons</h2>
+        <h2>Buttons</h2> */}
         {/* values for properties can be any JS expression. */}
-        <SpeakButton message="Hello there!"/>
+        {/* <SpeakButton message="Hello there!"/>
         <SpeakButton message="Speedy speed speed!" rate={3} pitch={2}></SpeakButton>
         <AlertButton alertMessage="You have clicked first alert button!"></AlertButton>
         <AlertButton alertMessage="You have clicked second alert button!"></AlertButton>
@@ -43,7 +46,7 @@ function DemosPage(){
         <ChatMessage message="Ha ha. You are not funny." userName="Ricarto" date="02/14/21"/>
         <h2>Social Media</h2>
         <SocialPost content="Um... can someone help me?" userName="WorseThanNewbie"/>
-        <SocialPost content="Please stop upload your naked selfie guys." userName="CommunityManager"/>
+        <SocialPost content="Please stop upload your naked selfie guys." userName="CommunityManager"/> */}
       </main>
 
     );

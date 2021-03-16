@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
-import he from "he";
-import Game from "./game";
 import LoadingSpinner from "../common/loading-spinner";
 import ErrorMessage from "../common/error-message";
 
-function QuizPage() {
+function RandomDogs() {
   // isLoading, setIsloading
-  const [quizFetch, setQuizFetch] = useState({
+  const [dogFetch, setDogFetch] = useState({
     isLoading: true,
     errorMessage: "",
     data: null,
@@ -14,10 +12,10 @@ function QuizPage() {
 
   //empty array for dependancies means the effect only runs on mount.
   useEffect(() => {
-    async function getQuiz(){
+    async function getDog(){
         try{
             console.log("Fetching!");
-            const url = "https://opentdb.com/api.php?amount=5&type=multiple";
+            const url = "https://dog.ceo/api/breeds/image/random/5";
             const response = await fetch(url);
             
             //stop the processing of the response and lick us over to the catch block
@@ -26,59 +24,42 @@ function QuizPage() {
             }
 
             const json = await response.json();
-            const {response_code, results} = json;
-
-            console.log(results);
-            if(response_code === 1){
+            const {message, status} = json;
+            console.log(message);
+            if(status !== "success"){
                 throw new Error("Bad API request - no results!");
-            } else if(response_code === 2){
-                throw new Error("Bad API request - invalid parameter!");
             }
 
-            //decode the trivia data HTML entities
-            const decodedResults = results.map((item) => {
-                return{
-                  ...item,
-                  difficulty: he.decode(item.difficulty),
-                  question: he.decode(item.question),
-                  correct_answer: he.decode(item.correct_answer),
-                  incorrect_answers: item.incorrect_answers.map(incorrect => he.decode(incorrect)),
-                };
-              });
-              console.log(decodedResults);
-            
+
             //successfully pass all the errors checks!
-            setQuizFetch({
+            setDogFetch({
                 isLoading: false,
                 errorMessage: "",
-                data: decodedResults,
+                data: message,
             });
 
         } catch (err){
             //display a generic error message.
-            setQuizFetch({
+            setDogFetch({
                 isLoading: false,
-                errorMessage: "Something went wrong loading the quiz. Please try again later.",
+                errorMessage: "Something went wrong loading the images. Please try again later.",
                 data: null,
             });
             //display specifics error for debugging in the console
             console.error(err);
         }
     }
-    getQuiz();
-
-    //TODO: we should cleanup if the user leaves the page before fetch
-    //finishes running
+    getDog();
   }, []);
   
-  const { isLoading, errorMessage, data } = quizFetch;
+  const { isLoading, errorMessage, data } = dogFetch;
 
   let contents;
   if (isLoading) contents = <LoadingSpinner />;
   else if (errorMessage !== "") contents = <ErrorMessage>Something went wrong!</ErrorMessage>;
-  else contents = <Game triviaData={data}/>;
+  else contents = data;
 
   return <main>{contents}</main>;
 }
 
-export default QuizPage;
+export default RandomDogs;

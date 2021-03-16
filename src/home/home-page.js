@@ -2,7 +2,7 @@ function HomePage(){
     return(
         <main>
             <h1>Home</h1>
-            <p>this is the home page.</p>
+            <p>Please log in.</p>
         </main>
     );
 }
